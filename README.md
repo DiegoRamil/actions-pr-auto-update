@@ -93,4 +93,4 @@ This project is licensed under the [MIT License](LICENSE).
 
 ## Citations
 
-<sup>[1]</sup> <ins>Forked from:</ins> [castastrophe/pr-updater-action](https://github.com/castastrophe/pr-updater-action)
+<sup>[1]</sup> <ins>Forked from:</ins> [castastrophe/actions-pr-auto-update](https://github.com/castastrophe/actions-pr-auto-update)
