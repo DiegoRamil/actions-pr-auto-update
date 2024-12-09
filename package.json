@@ -61,7 +61,7 @@
     "pull-request",
     "update"
   ],
-   "exports": {
+  "exports": {
     ".": "./bin/index.js"
   },
   "engines": {

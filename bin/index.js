@@ -31572,6 +31572,7 @@ Object.defineProperty(exports, "__esModule", ({ value: true }));
 exports["default"] = run;
 __nccwpck_require__(3045);
 const errors_1 = __nccwpck_require__(6976);
+const status_1 = __nccwpck_require__(5922);
 async function run(core, github) {
     async function fetchPullRequests(endpoint, limit = 100) {
         try {
@@ -31774,7 +31775,7 @@ async function run(core, github) {
         }
         if (!result)
             return;
-        core.debug(`Result: ${result.status} ${result.status !== 200
+        core.debug(`Result: ${result.status} ${!(0, status_1.obtainValidStatus)().includes(result.status)
             ? `${result.data.message}\n${`${result.url}`.underline.cyan}`
             : ''}`);
         return { result, pr };
@@ -31782,16 +31783,36 @@ async function run(core, github) {
         if (!results)
             return;
         results = results.filter((r) => typeof r !== 'undefined');
-        const passed = results.filter((r) => r.result.status === 200);
-        const failed = results.filter((r) => r.result.status !== 200);
+        const passed = results.filter((r) => (0, status_1.obtainValidStatus)().includes(r.result.status));
+        const failed = results.filter((r) => !(0, status_1.obtainValidStatus)().includes(r.result.status));
         results = results.sort((a, b) => a.pr.number - b.pr.number);
         core.info(`\n\n-------------------------\nAttempted to update ${results.length} pull request${results.length === 1 ? '' : 's'}:\n${results
-            .map((r) => `  ${r.result.status !== 200 ? '❌' : '✅'}  ${`#${r.pr.number}`.yellow} ${r.pr.title}\t${`${r.pr.number}`.underline.cyan}`)
+            .map((r) => `  ${!(0, status_1.obtainValidStatus)().includes(r.result.status) ? '❌' : '✅'}  ${`#${r.pr.number}`.yellow} ${r.pr.title}\t${`${r.pr.number}`.underline.cyan}`)
             .join('\n')}\n-------------------------\n\n${'Summary'.underline}\n---\n  ${`${passed.length}`.green} succeeded.\n  ${`${failed.length}`.red} failed.`);
         core.setOutput('updated', passed.length);
         core.setOutput('failed', failed.length);
     });
 }
+
+
+/***/ }),
+
+/***/ 5922:
+/***/ ((__unused_webpack_module, exports) => {
+
+"use strict";
+
+Object.defineProperty(exports, "__esModule", ({ value: true }));
+exports.HTTP_OK_STATUS = exports.obtainValidStatus = void 0;
+let VALID_STATUS = [];
+const obtainValidStatus = () => {
+    if (VALID_STATUS.length === 0) {
+        VALID_STATUS = exports.HTTP_OK_STATUS;
+    }
+    return VALID_STATUS;
+};
+exports.obtainValidStatus = obtainValidStatus;
+exports.HTTP_OK_STATUS = Array.from({ length: 100 }, (_, i) => i + 200);
 
 
 /***/ }),
