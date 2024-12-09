@@ -11,6 +11,7 @@ import {
   UNKNOWN_ERROR,
   UNKNOWN_FILTER_ERROR,
 } from './errors';
+import { obtainValidStatus } from './status';
 
 type PRListPromise = ReturnType<RestEndpointMethods['pulls']['list']>;
 type ReturnPullData = Awaited<PRListPromise>['data'];
@@ -286,7 +287,7 @@ export default async function run(
 
       core.debug(
         `Result: ${result.status} ${
-          result.status !== (200 as 202)
+          !obtainValidStatus().includes(result.status)
             ? `${result.data.message}\n${`${result.url}`.underline.cyan}`
             : ''
         }`,
@@ -313,9 +314,11 @@ export default async function run(
       } pull request${results.length === 1 ? '' : 's'}:\n${results
         .map(
           (r) =>
-            `  ${r!.result.status !== (200 as 202) ? '❌' : '✅'}  ${
-              `#${r!.pr.number}`.yellow
-            } ${r!.pr.title}\t${`${r!.pr.number}`.underline.cyan}`,
+            `  ${
+              !obtainValidStatus().includes(r!.result.status) ? '❌' : '✅'
+            }  ${`#${r!.pr.number}`.yellow} ${r!.pr.title}\t${
+              `${r!.pr.number}`.underline.cyan
+            }`,
         )
         .join('\n')}\n-------------------------\n\n${
         'Summary'.underline
