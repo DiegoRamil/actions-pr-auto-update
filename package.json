@@ -13,6 +13,9 @@
   "bugs": {
     "url": "https://github.com/DiegoRamil/actions-pr-auto-update/issues"
   },
+  "exports": {
+    ".": "./bin/index.js"
+  },
   "main": "bin/index.js",
   "files": [
     "bin/index.js"
@@ -61,9 +64,6 @@
     "pull-request",
     "update"
   ],
-  "exports": {
-    ".": "./bin/index.js"
-  },
   "engines": {
     "node": ">=18 <=20"
   },
@@ -78,7 +78,10 @@
     }
   ],
   "lint-staged": {
-    "!(bin/*)": "prettier --write",
+    "!(bin/*|Makefile)": [
+      "make all",
+      "prettier --write"
+    ],
     "package.json": "prettier-package-json --write",
     "*.ts,__*__/*.ts": "eslint --fix"
   }
