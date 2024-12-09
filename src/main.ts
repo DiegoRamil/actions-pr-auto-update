@@ -299,11 +299,11 @@ export default async function run(
 
     results = results.filter((r) => typeof r !== 'undefined');
 
-    const passed = results.filter(
-      (r) => r!.result.status === (200 as PRUpdateRun['status']),
+    const passed = results.filter((r) =>
+      obtainValidStatus().includes(r!.result.status),
     );
     const failed = results!.filter(
-      (r) => r!.result.status !== (200 as PRUpdateRun['status']),
+      (r) => !obtainValidStatus().includes(r!.result.status),
     );
 
     results = results.sort((a, b) => a!.pr.number - b!.pr.number);
