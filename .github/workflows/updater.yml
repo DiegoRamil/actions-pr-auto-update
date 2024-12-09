@@ -1,7 +1,9 @@
 name: PR update
 
 on:
-  workflow_dispatch:
+  push:
+    branches:
+      - main
 
 jobs:
   autoupdate:
