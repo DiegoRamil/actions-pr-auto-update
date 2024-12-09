@@ -1,3 +1,10 @@
+## [1.0.1](https://github.com/DiegoRamil/actions-pr-auto-update/compare/v1.0.0...v1.0.1) (2024-12-09)
+
+
+### Bug Fixes
+
+* **ci:** update gh token permissions ([55a959d](https://github.com/DiegoRamil/actions-pr-auto-update/commit/55a959d8acbb36ad084b6bf999c58785961b35ea))
+
 # 1.0.0 (2024-12-09)
 
 
