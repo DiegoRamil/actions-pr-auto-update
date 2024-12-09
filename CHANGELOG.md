@@ -1,3 +1,10 @@
+## [1.0.2](https://github.com/DiegoRamil/actions-pr-auto-update/compare/v1.0.1...v1.0.2) (2024-12-09)
+
+
+### Bug Fixes
+
+* **ci:** use pat token ([2f76c94](https://github.com/DiegoRamil/actions-pr-auto-update/commit/2f76c94d7fbff8fb4f7049858eaba8ae88cd2b44))
+
 ## [1.0.1](https://github.com/DiegoRamil/actions-pr-auto-update/compare/v1.0.0...v1.0.1) (2024-12-09)
 
 
