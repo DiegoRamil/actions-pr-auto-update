@@ -28,6 +28,6 @@ jobs:
       - name: Update all PRs
         uses: ./
         with:
-          token: ${{ secrets.GH_TOKEN }}
+          token: ${{ secrets.GITHUB_TOKEN }}
           limit: 10
           include_drafts: true
