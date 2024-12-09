@@ -1,3 +1,11 @@
+## [1.0.3](https://github.com/DiegoRamil/actions-pr-auto-update/compare/v1.0.2...v1.0.3) (2024-12-09)
+
+
+### Bug Fixes
+
+* **action:** valid status in summary ([#4](https://github.com/DiegoRamil/actions-pr-auto-update/issues/4)) ([c688300](https://github.com/DiegoRamil/actions-pr-auto-update/commit/c6883004afda39bedd0c997b50a4d4ff9fcdd946))
+* **docs:** fork citation url ([#2](https://github.com/DiegoRamil/actions-pr-auto-update/issues/2)) ([fb79bd3](https://github.com/DiegoRamil/actions-pr-auto-update/commit/fb79bd3940e1281bc88ca2a33bfe98f2c4ad1f8e))
+
 ## [1.0.2](https://github.com/DiegoRamil/actions-pr-auto-update/compare/v1.0.1...v1.0.2) (2024-12-09)
 
 
