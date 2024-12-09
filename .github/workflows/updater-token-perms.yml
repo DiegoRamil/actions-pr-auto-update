@@ -1,7 +1,9 @@
 name: PR update
 
 on:
-  workflow_dispatch:
+  push:
+    branches:
+      - main
 
 jobs:
   autoupdate:
@@ -26,6 +28,6 @@ jobs:
       - name: Update all PRs
         uses: ./
         with:
-          token: ${{ secrets.PAT_TOKEN }}
+          token: ${{ secrets.GITHUB_TOKEN }}
           limit: 10
           include_drafts: true
