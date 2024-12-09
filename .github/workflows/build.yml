@@ -2,23 +2,30 @@ name: Build
 
 on:
   push:
-    branches: main
+    branches:
+      - main
   pull_request:
     types: [opened, synchronize, reopened]
 
 jobs:
   build:
     runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        node-version: [18, 20]
 
     steps:
       - name: Check out code
-        uses: actions/checkout@v3
-      - name: Use Node LTS version
-        uses: actions/setup-node@v3
+        uses: actions/checkout@v4
+
+      - name: Use Node ${{ matrix.node-version }} version
+        uses: actions/setup-node@v4
         with:
-          cache: yarn
-          node-version: 18
+          cache: npm
+          node-version: ${{ matrix.node-version }}
+
       - name: Install dependencies
-        run: yarn install --frozen-lockfile
+        run: npm ci --no-audit --no-fund
+
       - name: Run build
-        run: yarn build
+        run: npm run build

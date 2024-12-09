@@ -1,6 +1,7 @@
 name: Auto-update pull requests
 description: Keep your pull requests up-to-date with a base branch
-author: 'Cassondra Roberts'
+author: 'Diego Ramil'
+
 inputs:
   token:
     required: false
@@ -28,7 +29,7 @@ outputs:
     description: 'The number of pull requests that failed to update.'
 
 runs:
-  using: node16
+  using: node20
   main: bin/index.js
 
 branding:
