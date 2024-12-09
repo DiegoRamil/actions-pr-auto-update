@@ -30,7 +30,7 @@ jobs:
     permissions:
       pull-requests: write
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
       - name: Update ALL THE PRS! 🎉
         uses: DiegoRamil/actions-pr-auto-update
         with:
@@ -60,7 +60,7 @@ Various inputs are defined in [`action.yml`](action.yml) to let you configure th
 | `include_labels` | A comma-separated list of labels, at least one of which **must** be present on the pull request to be updated. If no labels are present, PR will be skipped.  |                |
 | `exclude_labels` | A comma-separated list of labels, where if at least one is present on the pull request to be updated, that PR will be skipped.                                |                |
 
-Have ideas for additional features? [Open an issue](https://github.com/castastrophe/actions-pr-auto-update/issues)!
+Have ideas for additional features? [Open an issue](https://github.com/DiegoRamil/actions-pr-auto-update/issues)!
 
 ### Outputs
 
@@ -93,4 +93,4 @@ This project is licensed under the [MIT License](LICENSE).
 
 ## Citations
 
-<sup>[1]</sup> <ins>Forked from:</ins> [castastrophe/actions-pr-auto-update](https://github.com/castastrophe/actions-pr-auto-update)
+<sup>[1]</sup> <ins>Forked from:</ins> [DiegoRamil/actions-pr-auto-update](https://github.com/DiegoRamil/actions-pr-auto-update)
