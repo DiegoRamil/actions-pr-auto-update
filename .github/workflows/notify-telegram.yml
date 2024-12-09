@@ -1,0 +1,27 @@
+name: Notify telegram bot
+on:
+  workflow_run:
+    workflows: ["Release"]
+    branches: [main]
+    types:
+      - completed
+
+jobs:
+  notify:
+    runs-on: ubuntu-latest
+    if: ${{ github.event.workflow_run.conclusion == 'success' }}
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Send Telegram Message
+        uses: appleboy/telegram-action@master
+        with:
+          to: ${{ secrets.TELEGRAM_TO }}
+          token: ${{ secrets.TELEGRAM_TOKEN }}
+          message: |
+            Released a new version in actions-pr-auto-update.
+
+            ${{ github.actor }} created a new commit.
+
+            See changes at: https://github.com/${{ github.repository }}/commit/${{ github.sha }}
+            See changelog at: https://github.com/${{ github.repository }}/blob/main/CHANGELOG.md
