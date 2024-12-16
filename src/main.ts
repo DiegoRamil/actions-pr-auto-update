@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-non-null-assertion */
 import type { RestEndpointMethods } from '@actions/github/node_modules/@octokit/plugin-rest-endpoint-methods/dist-types/generated/method-types';
 import type * as GitHub from '@actions/github';
 import type * as Core from '@actions/core';
@@ -210,7 +209,6 @@ export default async function run(
     do {
       if (prs.length >= limit) break;
 
-      // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
       const nextPage = await fetchPullRequests(
         client!.rest,
         pages === 1 ? limit : 100,
@@ -235,7 +233,6 @@ export default async function run(
       }
     } while (prs.length < limit && --pages > 0);
   } else {
-    // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
     const page = await fetchPullRequests(client!.rest);
     if (page && page.status === 200 && page.data && page.data.length > 0) {
       prs.push(...(filterPullRequests(page.data) ?? []));
