@@ -9,8 +9,12 @@ jobs:
   autoupdate:
     runs-on: ubuntu-latest
     permissions:
-      contents: read
+      id-token: write
+      contents: write
+      checks: write
       pull-requests: write
+      issues: write
+
     steps:
       - uses: actions/checkout@v4
 
@@ -28,6 +32,7 @@ jobs:
       - name: Update all PRs
         uses: ./
         with:
-          token: ${{ secrets.PAT_TOKEN }}
+          # token: ${{ secrets.PAT_TOKEN }}
+          token: ${{ secrets.GITHUB_TOKEN }}
           limit: 10
           include_drafts: true
