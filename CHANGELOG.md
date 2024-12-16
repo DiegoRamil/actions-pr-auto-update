@@ -1,3 +1,10 @@
+## [1.0.4](https://github.com/DiegoRamil/actions-pr-auto-update/compare/v1.0.3...v1.0.4) (2024-12-16)
+
+
+### Bug Fixes
+
+* **readme:** update fork reference ([328bfa9](https://github.com/DiegoRamil/actions-pr-auto-update/commit/328bfa900531945823efb61edf8d4719d45528da))
+
 ## [1.0.3](https://github.com/DiegoRamil/actions-pr-auto-update/compare/v1.0.2...v1.0.3) (2024-12-09)
 
 
