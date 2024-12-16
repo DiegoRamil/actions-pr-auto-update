@@ -13,6 +13,9 @@
   "bugs": {
     "url": "https://github.com/DiegoRamil/actions-pr-auto-update/issues"
   },
+  "exports": {
+    ".": "./bin/index.js"
+  },
   "main": "bin/index.js",
   "files": [
     "bin/index.js"
@@ -32,18 +35,18 @@
     "@actions/github": "^6.0.0"
   },
   "devDependencies": {
-    "@commitlint/cli": "^17.7.1",
+    "@commitlint/cli": "^19.6.0",
     "@commitlint/config-conventional": "^17.4.4",
     "@semantic-release/changelog": "^6.0.3",
     "@semantic-release/git": "^10.0.1",
-    "@types/jest": "^29.5.1",
+    "@types/jest": "^29.5.14",
     "@types/node": "^22.10.1",
     "@typescript-eslint/eslint-plugin": "^5.59.7",
     "@typescript-eslint/parser": "^5.59.7",
-    "@vercel/ncc": "^0.36.1",
+    "@vercel/ncc": "^0.38.3",
     "colors": "^1.4.0",
     "eslint": "^8.41.0",
-    "eslint-config-prettier": "^8.8.0",
+    "eslint-config-prettier": "^9.1.0",
     "eslint-plugin-jest": "^27.2.1",
     "eslint-plugin-node": "^11.1.0",
     "husky": "^9.1.7",
@@ -51,7 +54,7 @@
     "prettier": "^2.8.8",
     "prettier-package-json": "^2.8.0",
     "semantic-release": "^21.0.2",
-    "ts-jest": "^29.1.0",
+    "ts-jest": "^29.2.5",
     "typescript": "^5.7.2"
   },
   "keywords": [
@@ -61,9 +64,6 @@
     "pull-request",
     "update"
   ],
-  "exports": {
-    ".": "./bin/index.js"
-  },
   "engines": {
     "node": ">=18 <=20"
   },
@@ -78,7 +78,10 @@
     }
   ],
   "lint-staged": {
-    "!(bin/*)": "prettier --write",
+    "!(bin/*|Makefile)": [
+      "make all",
+      "prettier --write"
+    ],
     "package.json": "prettier-package-json --write",
     "*.ts,__*__/*.ts": "eslint --fix"
   }
