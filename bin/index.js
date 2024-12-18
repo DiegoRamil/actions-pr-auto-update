@@ -31513,7 +31513,7 @@ exports.AUTH_GH_ERROR = 'An unknown error occurred while authenticating with the
 
 /***/ }),
 
-/***/ 9407:
+/***/ 1730:
 /***/ (function(__unused_webpack_module, exports, __nccwpck_require__) {
 
 "use strict";
@@ -31551,29 +31551,14 @@ var __importStar = (this && this.__importStar) || (function () {
         return result;
     };
 })();
-var __importDefault = (this && this.__importDefault) || function (mod) {
-    return (mod && mod.__esModule) ? mod : { "default": mod };
-};
 Object.defineProperty(exports, "__esModule", ({ value: true }));
-const core = __importStar(__nccwpck_require__(7484));
-const github = __importStar(__nccwpck_require__(3228));
-const main_1 = __importDefault(__nccwpck_require__(1730));
-(0, main_1.default)(core, github);
-
-
-/***/ }),
-
-/***/ 1730:
-/***/ ((__unused_webpack_module, exports, __nccwpck_require__) => {
-
-"use strict";
-
-Object.defineProperty(exports, "__esModule", ({ value: true }));
-exports["default"] = run;
+exports.run = run;
 __nccwpck_require__(7748);
 const errors_1 = __nccwpck_require__(3916);
 const status_1 = __nccwpck_require__(5565);
-async function run(core, github) {
+const core = __importStar(__nccwpck_require__(7484));
+const github = __importStar(__nccwpck_require__(3228));
+async function run() {
     async function fetchPullRequests(endpoint, limit = 100) {
         try {
             const result = await endpoint.pulls.list({
@@ -31803,6 +31788,7 @@ exports.HTTP_OK_STATUS = exports.obtainValidStatus = void 0;
 let VALID_STATUS = [];
 const obtainValidStatus = () => {
     if (VALID_STATUS.length === 0) {
+        console.log('Creating the array with valid status codes');
         VALID_STATUS = exports.HTTP_OK_STATUS;
     }
     return VALID_STATUS;
@@ -33716,13 +33702,20 @@ module.exports = parseParams
 /******/ 	if (typeof __nccwpck_require__ !== 'undefined') __nccwpck_require__.ab = __dirname + "/";
 /******/ 	
 /************************************************************************/
-/******/ 	
-/******/ 	// startup
-/******/ 	// Load entry module and return exports
-/******/ 	// This entry module is referenced by other modules so it can't be inlined
-/******/ 	var __webpack_exports__ = __nccwpck_require__(9407);
-/******/ 	module.exports = __webpack_exports__;
-/******/ 	
+var __webpack_exports__ = {};
+// This entry need to be wrapped in an IIFE because it need to be in strict mode.
+(() => {
+"use strict";
+var exports = __webpack_exports__;
+
+Object.defineProperty(exports, "__esModule", ({ value: true }));
+const main_1 = __nccwpck_require__(1730);
+// eslint-disable-next-line @typescript-eslint/no-floating-promises
+(0, main_1.run)();
+
+})();
+
+module.exports = __webpack_exports__;
 /******/ })()
 ;
 //# sourceMappingURL=index.js.map

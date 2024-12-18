@@ -1,6 +1,4 @@
 import type { RestEndpointMethods } from '@actions/github/node_modules/@octokit/plugin-rest-endpoint-methods/dist-types/generated/method-types'
-import type * as GitHub from '@actions/github'
-import type * as Core from '@actions/core'
 
 import 'colors'
 import {
@@ -11,6 +9,8 @@ import {
   UNKNOWN_FILTER_ERROR
 } from './errors'
 import { obtainValidStatus } from './status'
+import * as core from '@actions/core'
+import * as github from '@actions/github'
 
 type PRListPromise = ReturnType<RestEndpointMethods['pulls']['list']>
 type ReturnPullData = Awaited<PRListPromise>['data']
@@ -18,10 +18,7 @@ type PRUpdateRun = Awaited<
   ReturnType<RestEndpointMethods['pulls']['updateBranch']>
 >
 
-export default async function run(
-  core: typeof Core,
-  github: typeof GitHub
-): Promise<void> {
+export async function run(): Promise<void> {
   async function fetchPullRequests(
     endpoint: RestEndpointMethods,
     limit = 100

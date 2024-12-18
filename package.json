@@ -24,6 +24,7 @@
     "build": "npm run format:write && ncc build -o bin src/index.ts --source-map",
     "clean": "rm -rf bin",
     "coverage": "echo '🚧 Tests coming soon'",
+    "dev": "NODE_ENV=development npx local-action . src/main.ts .env",
     "format:write": "npx prettier --write .",
     "format:check": "npx prettier --check .",
     "lint": "npx eslint . -c ./.github/linters/.eslintrc.yml",
@@ -39,6 +40,7 @@
   "devDependencies": {
     "@commitlint/cli": "^19.6.0",
     "@commitlint/config-conventional": "^17.4.4",
+    "@github/local-action": "^2.2.1",
     "@semantic-release/changelog": "^6.0.3",
     "@semantic-release/git": "^10.0.1",
     "@types/jest": "^29.5.14",
