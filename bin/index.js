@@ -1,4 +1,4 @@
-/******/ (() => { // webpackBootstrap
+require('./sourcemap-register.js');/******/ (() => { // webpackBootstrap
 /******/ 	var __webpack_modules__ = ({
 
 /***/ 4914:
@@ -31585,7 +31585,7 @@ async function run(core, github) {
                 sort: 'updated',
                 direction: 'desc',
                 state: 'open',
-                per_page: limit,
+                per_page: limit
             });
             if (result.data.length > 0) {
                 core.info(`${result.data.length} open pull requests returned; sorted by most recently updated.`);
@@ -31617,7 +31617,7 @@ async function run(core, github) {
         };
         try {
             // Always exclude dependabot and other bot PRs
-            prs = prs.filter((pr) => {
+            prs = prs.filter(pr => {
                 if (isBot(pr))
                     core.info(`Excluding bot PR: ${pr.title}`);
                 return !isBot(pr);
@@ -31627,11 +31627,11 @@ async function run(core, github) {
             const includeDrafts = core.getInput('include_drafts') === 'true' ? true : false;
             let strhold = core.getInput('include_labels');
             const allowLabels = typeof strhold !== 'undefined' && strhold.length !== 0
-                ? strhold.split(',').map((i) => i.trim())
+                ? strhold.split(',').map(i => i.trim())
                 : undefined;
             strhold = core.getInput('exclude_labels');
             const denyLabels = typeof strhold !== 'undefined' && strhold.length !== 0
-                ? strhold.split(',').map((i) => i.trim())
+                ? strhold.split(',').map(i => i.trim())
                 : undefined;
             if (typeof allowLabels === 'undefined' &&
                 typeof denyLabels === 'undefined' &&
@@ -31639,7 +31639,7 @@ async function run(core, github) {
                 core.info(`No limiting filters were provided, returning all ${prs.length} PRs, including drafts.`);
                 return prs;
             }
-            return prs.filter((pr) => {
+            return prs.filter(pr => {
                 let allow = true;
                 const print = `Excluding ${`#${pr.number}`.yellow} ${pr.title} | ${`${pr.url}`.cyan.underline}`;
                 if (!includeDrafts && isDraft(pr)) {
@@ -31648,15 +31648,13 @@ async function run(core, github) {
                 }
                 if (typeof allowLabels !== 'undefined' && allowLabels.length !== 0) {
                     allow =
-                        allow &&
-                            pr.labels.some((label) => allowLabels.includes(label.name));
+                        allow && pr.labels.some(label => allowLabels.includes(label.name));
                     if (!allow)
                         core.info(`${print} as none of the required labels (${allowLabels.join(', ')}) were present.`);
                 }
                 if (typeof denyLabels !== 'undefined' && denyLabels.length !== 0) {
                     allow =
-                        allow &&
-                            pr.labels.every((label) => !denyLabels.includes(label.name));
+                        allow && pr.labels.every(label => !denyLabels.includes(label.name));
                     if (!allow)
                         core.info(`${print} because one of the blocking labels (${denyLabels.join(', ')}) was present.`);
                 }
@@ -31729,9 +31727,9 @@ async function run(core, github) {
             // this must be done here so we know if we need to fetch another page
             const filtered = filterPullRequests(nextPage.data) ?? [];
             if (filtered.length > 0) {
-                filtered.forEach((pr) => {
+                filtered.forEach(pr => {
                     // Don't add duplicates
-                    if (prs.some((p) => p.number === pr.number))
+                    if (prs.some(p => p.number === pr.number))
                         return;
                     prs.push(pr);
                 });
@@ -31763,7 +31761,7 @@ async function run(core, github) {
             result = await client.rest.pulls.updateBranch({
                 ...github.context.repo,
                 expected_head_sha: pr.head.sha,
-                pull_number: pr.number,
+                pull_number: pr.number
             });
         }
         catch (err) {
@@ -31780,12 +31778,12 @@ async function run(core, github) {
     })).then((results) => {
         if (!results)
             return;
-        results = results.filter((r) => typeof r !== 'undefined');
-        const passed = results.filter((r) => (0, status_1.obtainValidStatus)().includes(r.result.status));
-        const failed = results.filter((r) => !(0, status_1.obtainValidStatus)().includes(r.result.status));
+        results = results.filter(r => typeof r !== 'undefined');
+        const passed = results.filter(r => (0, status_1.obtainValidStatus)().includes(r.result.status));
+        const failed = results.filter(r => !(0, status_1.obtainValidStatus)().includes(r.result.status));
         results = results.sort((a, b) => a.pr.number - b.pr.number);
         core.info(`\n\n-------------------------\nAttempted to update ${results.length} pull request${results.length === 1 ? '' : 's'}:\n${results
-            .map((r) => `  ${!(0, status_1.obtainValidStatus)().includes(r.result.status) ? '❌' : '✅'}  ${`#${r.pr.number}`.yellow} ${r.pr.title}\t${`${r.pr.number}`.underline.cyan}`)
+            .map(r => `  ${!(0, status_1.obtainValidStatus)().includes(r.result.status) ? '❌' : '✅'}  ${`#${r.pr.number}`.yellow} ${r.pr.title}\t${`${r.pr.number}`.underline.cyan}`)
             .join('\n')}\n-------------------------\n\n${'Summary'.underline}\n---\n  ${`${passed.length}`.green} succeeded.\n  ${`${failed.length}`.red} failed.`);
         core.setOutput('updated', passed.length);
         core.setOutput('failed', failed.length);
@@ -33727,3 +33725,4 @@ module.exports = parseParams
 /******/ 	
 /******/ })()
 ;
+//# sourceMappingURL=index.js.map
