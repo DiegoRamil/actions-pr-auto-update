@@ -1,4 +1,4 @@
-import type { RestEndpointMethods } from '@actions/github/node_modules/@octokit/plugin-rest-endpoint-methods/dist-types/generated/method-types'
+import type { RestEndpointMethods } from '@actions/github/node_modules/@octokit/plugin-rest-endpoint-methods/dist-types/generated/method-types.d.ts'
 
 import 'colors'
 import {
@@ -7,8 +7,8 @@ import {
   NO_TOKEN_ERROR,
   UNKNOWN_ERROR,
   UNKNOWN_FILTER_ERROR
-} from './errors'
-import { obtainValidStatus } from './status'
+} from './errors.js'
+import { obtainValidStatus } from './status.js'
 import * as core from '@actions/core'
 import * as github from '@actions/github'
 
@@ -73,7 +73,7 @@ export async function run(): Promise<void> {
 
     try {
       // Always exclude dependabot and other bot PRs
-      prs = prs.filter(pr => {
+      prs = prs.filter((pr) => {
         if (isBot(pr)) core.info(`Excluding bot PR: ${pr.title}`)
         return !isBot(pr)
       })
@@ -86,13 +86,13 @@ export async function run(): Promise<void> {
       let strhold = core.getInput('include_labels')
       const allowLabels: string[] | undefined =
         typeof strhold !== 'undefined' && strhold.length !== 0
-          ? strhold.split(',').map(i => i.trim())
+          ? strhold.split(',').map((i) => i.trim())
           : undefined
 
       strhold = core.getInput('exclude_labels')
       const denyLabels: string[] | undefined =
         typeof strhold !== 'undefined' && strhold.length !== 0
-          ? strhold.split(',').map(i => i.trim())
+          ? strhold.split(',').map((i) => i.trim())
           : undefined
 
       if (
@@ -106,7 +106,7 @@ export async function run(): Promise<void> {
         return prs
       }
 
-      return prs.filter(pr => {
+      return prs.filter((pr) => {
         let allow = true
         const print = `Excluding ${`#${pr.number}`.yellow} ${pr.title} | ${
           `${pr.url}`.cyan.underline
@@ -118,7 +118,7 @@ export async function run(): Promise<void> {
 
         if (typeof allowLabels !== 'undefined' && allowLabels.length !== 0) {
           allow =
-            allow && pr.labels.some(label => allowLabels.includes(label.name))
+            allow && pr.labels.some((label) => allowLabels.includes(label.name))
           if (!allow)
             core.info(
               `${print} as none of the required labels (${allowLabels.join(
@@ -129,7 +129,8 @@ export async function run(): Promise<void> {
 
         if (typeof denyLabels !== 'undefined' && denyLabels.length !== 0) {
           allow =
-            allow && pr.labels.every(label => !denyLabels.includes(label.name))
+            allow &&
+            pr.labels.every((label) => !denyLabels.includes(label.name))
           if (!allow)
             core.info(
               `${print} because one of the blocking labels (${denyLabels.join(
@@ -220,9 +221,9 @@ export async function run(): Promise<void> {
       // this must be done here so we know if we need to fetch another page
       const filtered = filterPullRequests(nextPage.data) ?? []
       if (filtered.length > 0) {
-        filtered.forEach(pr => {
+        filtered.forEach((pr) => {
           // Don't add duplicates
-          if (prs.some(p => p.number === pr.number)) return
+          if (prs.some((p) => p.number === pr.number)) return
           prs.push(pr)
         })
       }
@@ -250,7 +251,7 @@ export async function run(): Promise<void> {
 
   core.info(`Found ${prs.length} pull requests to update.\n\n`)
   await Promise.all(
-    prs.map(async pr => {
+    prs.map(async (pr) => {
       core.debug(
         `Attempting to update ${`#${pr.number}`.yellow} ${pr.title} ${
           `${pr.url}`.underline.cyan
@@ -289,13 +290,13 @@ export async function run(): Promise<void> {
   ).then((results): void => {
     if (!results) return
 
-    results = results.filter(r => typeof r !== 'undefined')
+    results = results.filter((r) => typeof r !== 'undefined')
 
-    const passed = results.filter(r =>
+    const passed = results.filter((r) =>
       obtainValidStatus().includes(r!.result.status)
     )
     const failed = results.filter(
-      r => !obtainValidStatus().includes(r!.result.status)
+      (r) => !obtainValidStatus().includes(r!.result.status)
     )
 
     results = results.sort((a, b) => a!.pr.number - b!.pr.number)
@@ -305,7 +306,7 @@ export async function run(): Promise<void> {
         results.length
       } pull request${results.length === 1 ? '' : 's'}:\n${results
         .map(
-          r =>
+          (r) =>
             `  ${
               !obtainValidStatus().includes(r!.result.status) ? '❌' : '✅'
             }  ${`#${r!.pr.number}`.yellow} ${r!.pr.title}\t${
