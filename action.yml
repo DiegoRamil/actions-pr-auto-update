@@ -14,13 +14,19 @@ inputs:
   include_drafts:
     required: false
     default: 'false'
-    description: 'If true, updates will include pull requests that are open but in a draft state.'
+    description:
+      'If true, updates will include pull requests that are open but in a draft
+      state.'
   include_labels:
     required: false
-    description: 'If set, only PRs with these labels applied will be updated. Please comma separate labels.'
+    description:
+      'If set, only PRs with these labels applied will be updated. Please comma
+      separate labels.'
   exclude_labels:
     required: false
-    description: 'If set, PRs with these labels applied will not be updated. Please comma separate labels.'
+    description:
+      'If set, PRs with these labels applied will not be updated. Please comma
+      separate labels.'
 
 outputs:
   updated:

@@ -6,15 +6,28 @@
 uses: DiegoRamil/actions-pr-auto-update@v1
 ```
 
-The goal of this action is to automatically update pull requests when their target branch is updated. This is useful when you have a long-running pull request that is not yet ready to be merged, but you want to keep it up to date with the target branch. Several customizations are available to control which pull requests are updated. Bot pull requests such as dependabot and closed pull requests are always ignored.
+The goal of this action is to automatically update pull requests when their
+target branch is updated. This is useful when you have a long-running pull
+request that is not yet ready to be merged, but you want to keep it up to date
+with the target branch. Several customizations are available to control which
+pull requests are updated. Bot pull requests such as dependabot and closed pull
+requests are always ignored.
 
-This project was forked from the cited repo below. This fork focuses on adding additional configurations and modernizing the tools and dependencies. <sup>[1](#citations)</sup>
+This project was forked from the cited repo below. This fork focuses on adding
+additional configurations and modernizing the tools and dependencies.
+<sup>[1](#citations)</sup>
 
 ## Usage
 
-For this action to run, you will need to ensure the access token used includes permission to update pull requests. This can be done by creating a [personal access token](https://docs.github.com/en/github/authenticating-to-github/creating-a-personal-access-token) with the `pull-requests:write` scope. This token can then be added as a [repository secret](https://docs.github.com/en/actions/reference/encrypted-secrets) and referenced in the workflow.
+For this action to run, you will need to ensure the access token used includes
+permission to update pull requests. This can be done by creating a
+[personal access token](https://docs.github.com/en/github/authenticating-to-github/creating-a-personal-access-token)
+with the `pull-requests:write` scope. This token can then be added as a
+[repository secret](https://docs.github.com/en/actions/reference/encrypted-secrets)
+and referenced in the workflow.
 
-Create a new workflow file in your repository (e.g. `.github/workflows/pr-update.yml`).
+Create a new workflow file in your repository (e.g.
+`.github/workflows/pr-update.yml`).
 
 ```yml
 name: Pull request update
@@ -46,11 +59,14 @@ jobs:
           include_labels: 'update,update me'
 ```
 
-Once this is in place, every time a commit is pushed to one of the branches specified in your workflow, all pull requests targeting that branch (and that fall within the configured parameters) will be updated.
+Once this is in place, every time a commit is pushed to one of the branches
+specified in your workflow, all pull requests targeting that branch (and that
+fall within the configured parameters) will be updated.
 
 ### Inputs
 
-Various inputs are defined in [`action.yml`](action.yml) to let you configure this action:
+Various inputs are defined in [`action.yml`](action.yml) to let you configure
+this action:
 
 | Name             | Description                                                                                                                                                   | Default        |
 | ---------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------- |
@@ -60,11 +76,13 @@ Various inputs are defined in [`action.yml`](action.yml) to let you configure th
 | `include_labels` | A comma-separated list of labels, at least one of which **must** be present on the pull request to be updated. If no labels are present, PR will be skipped.  |                |
 | `exclude_labels` | A comma-separated list of labels, where if at least one is present on the pull request to be updated, that PR will be skipped.                                |                |
 
-Have ideas for additional features? [Open an issue](https://github.com/DiegoRamil/actions-pr-auto-update/issues)!
+Have ideas for additional features?
+[Open an issue](https://github.com/DiegoRamil/actions-pr-auto-update/issues)!
 
 ### Outputs
 
-Outputs are defined in [`action.yml`](action.yml) to let you access information about the action after it has run:
+Outputs are defined in [`action.yml`](action.yml) to let you access information
+about the action after it has run:
 
 | Name      | Description                                        |
 | --------- | -------------------------------------------------- |
@@ -73,15 +91,18 @@ Outputs are defined in [`action.yml`](action.yml) to let you access information 
 
 ## Limitations
 
-Due to [rate limiting](https://docs.github.com/en/rest/overview/resources-in-the-rest-api#rate-limiting) user
-token can only perform 5,000 requests per hour. This limit will vary based on the type of token used and the account
-level of the token owner.
+Due to
+[rate limiting](https://docs.github.com/en/rest/overview/resources-in-the-rest-api#rate-limiting)
+user token can only perform 5,000 requests per hour. This limit will vary based
+on the type of token used and the account level of the token owner.
 
 ## Future work
 
 - [ ] Add support for rebasing pull requests instead of merging
-- [ ] Include a SHA check to ensure the pull request is not already up-to-date (or query for a needs-update flag?)
-- [ ] Explore a chron-job approach to avoid rate limiting issues and keep logs clean (e.g. run once a day)
+- [ ] Include a SHA check to ensure the pull request is not already up-to-date
+      (or query for a needs-update flag?)
+- [ ] Explore a chron-job approach to avoid rate limiting issues and keep logs
+      clean (e.g. run once a day)
 
 ## Contributions
 
@@ -93,4 +114,5 @@ This project is licensed under the [MIT License](LICENSE).
 
 ## Citations
 
-<sup>[1]</sup> <ins>Forked from:</ins> [castastrophe/actions-pr-auto-update](https://github.com/castastrophe/actions-pr-auto-update)
+<sup>[1]</sup> <ins>Forked from:</ins>
+[castastrophe/actions-pr-auto-update](https://github.com/castastrophe/actions-pr-auto-update)
