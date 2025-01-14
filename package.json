@@ -84,7 +84,7 @@
     "update"
   ],
   "engines": {
-    "node": ">=18 <=20"
+    "node": ">=20"
   },
   "publishConfig": {
     "access": "public",
