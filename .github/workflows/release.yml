@@ -6,7 +6,8 @@ on:
 jobs:
     publish:
       runs-on: ubuntu-latest
-      permissions: write-all
+      permissions:
+        contents: write
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
@@ -28,6 +29,6 @@ jobs:
           run: npm run build
 
         - name: Semantic release
-          uses: npx semantic-release
+          run: npx semantic-release
           env:
             GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

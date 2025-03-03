@@ -1,5 +1,6 @@
 {
   "private": "true",
+  "type": "module",
   "name": "actions-pr-auto-update",
   "version": "1.1.0",
   "description": "A configurable GitHub Action to keep pull requests up-to-date.",
@@ -21,10 +22,13 @@
     "bin/index.js"
   ],
   "scripts": {
-    "build": "tsc && ncc build -o bin src/index.ts",
+    "build": "npm run format:write && npx rollup --config rollup.config.ts --configPlugin @rollup/plugin-typescript",
     "clean": "rm -rf bin",
     "coverage": "echo '🚧 Tests coming soon'",
-    "lint": "npx lint-staged",
+    "dev": "NODE_ENV=development npx local-action . src/main.ts .env",
+    "format:write": "npx prettier --write .",
+    "format:check": "npx prettier --check .",
+    "lint": "npx eslint .",
     "precommit": "lint-staged",
     "prepare": "husky",
     "semantic-release": "semantic-release",
@@ -35,29 +39,42 @@
     "@actions/github": "^6.0.0"
   },
   "devDependencies": {
+    "@eslint/compat": "^1.2.3",
+    "@rollup/plugin-commonjs": "^28.0.1",
+    "@rollup/plugin-node-resolve": "^15.3.0",
+    "@rollup/plugin-typescript": "^12.1.1",
     "@commitlint/cli": "^19.6.0",
     "@commitlint/config-conventional": "^17.4.4",
-    "@eslint/eslintrc": "^3.2.0",
-    "@eslint/js": "^9.17.0",
+    "@github/local-action": "^2.2.1",
     "@semantic-release/changelog": "^6.0.3",
     "@semantic-release/git": "^10.0.1",
     "@types/jest": "^29.5.14",
-    "@types/node": "^22.10.1",
+    "@types/node": "^22.10.2",
     "@typescript-eslint/eslint-plugin": "^8.18.0",
+    "@typescript-eslint/parser": "^8.18.0",
     "@vercel/ncc": "^0.38.3",
     "colors": "^1.4.0",
-    "eslint": "^9.17.0",
+    "eslint": "^9.14.0",
     "eslint-config-prettier": "^9.1.0",
+    "eslint-import-resolver-typescript": "^3.6.3",
+    "eslint-plugin-import": "^2.31.0",
     "eslint-plugin-jest": "^28.9.0",
-    "eslint-plugin-node": "^11.1.0",
+    "eslint-plugin-prettier": "^5.2.1",
+    "rollup": "^4.27.0",
+    "ts-jest-resolver": "^2.0.1",
+    "ts-node": "^10.9.2",
     "globals": "^15.13.0",
     "husky": "^9.1.7",
     "lint-staged": "^15.2.10",
     "prettier": "3.4.2",
+    "prettier-eslint":"16.3.0",
     "prettier-package-json": "^2.8.0",
     "semantic-release": "24.2.0",
     "ts-jest": "^29.2.5",
     "typescript": "^5.7.2"
+  },
+   "optionalDependencies": {
+    "@rollup/rollup-linux-x64-gnu": "*"
   },
   "keywords": [
     "actions",
@@ -67,7 +84,7 @@
     "update"
   ],
   "engines": {
-    "node": ">=18 <=20"
+    "node": ">=20"
   },
   "publishConfig": {
     "access": "public",
@@ -85,7 +102,7 @@
       "prettier --write"
     ],
     "package.json": "prettier-package-json --write",
-    "*.ts,__*__/*.ts": "eslint --fix"
+    "*.ts,__*__/*.ts": "eslint"
   }
 }
 
