@@ -1,3 +1,22 @@
+# [1.1.0](https://github.com/DiegoRamil/actions-pr-auto-update/compare/v1.0.4...v1.1.0) (2025-03-03)
+
+
+### Bug Fixes
+
+* **ci:** exclude natural language and md from super linter ([7d9013d](https://github.com/DiegoRamil/actions-pr-auto-update/commit/7d9013d87c3520e916ad9a1457c18610cdf8429d))
+* **ci:** linting branches ([6a6ad5c](https://github.com/DiegoRamil/actions-pr-auto-update/commit/6a6ad5cd5c69781a23afc85fbe7cd3c733fd67e4))
+* **ext:** rename js to cjs in commitlint file ([22d6e1d](https://github.com/DiegoRamil/actions-pr-auto-update/commit/22d6e1d6d08392fb413dc5370f035bf8bda3359f))
+* **license:** change authir ([1bc107f](https://github.com/DiegoRamil/actions-pr-auto-update/commit/1bc107f858bd242389a3838c58ab3e60e4a78f57))
+* **license:** change author ([12cf0a4](https://github.com/DiegoRamil/actions-pr-auto-update/commit/12cf0a4479254e464c1b2e6a79644f3584d790ab))
+* **linter:** disable json due to compatibility issues with eslint 9 ([d53a78b](https://github.com/DiegoRamil/actions-pr-auto-update/commit/d53a78b3feb18eaddd2c5379e1caf1f4853f09ad))
+* **linter:** remove non required linters ([c02084c](https://github.com/DiegoRamil/actions-pr-auto-update/commit/c02084cbc162a3c77b3f2fd47245d46b60c65d62))
+* **styling:** add build folder to eslint exclusions ([6b07c79](https://github.com/DiegoRamil/actions-pr-auto-update/commit/6b07c7976fbf245dec35924e62395dae1fe57e23))
+
+
+### Features
+
+* **dev:** add local action script ([fa2f90b](https://github.com/DiegoRamil/actions-pr-auto-update/commit/fa2f90b0c611fc727459982c22ee830cdbedc487))
+
 ## [1.0.4](https://github.com/DiegoRamil/actions-pr-auto-update/compare/v1.0.3...v1.0.4) (2024-12-16)
 
 ### Bug Fixes
