@@ -6,7 +6,7 @@ on:
 
 jobs:
   tag:
-    runs-on: ubuntu-24.04
+    runs-on: ubuntu-latest
     steps:
       - name: "Check if there's any conflict"
         uses: eps1lon/actions-label-merge-conflict@v3
