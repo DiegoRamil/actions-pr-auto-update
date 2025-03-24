@@ -44,7 +44,7 @@
     "@rollup/plugin-node-resolve": "^15.3.0",
     "@rollup/plugin-typescript": "^12.1.1",
     "@commitlint/cli": "^19.8.0",
-    "@commitlint/config-conventional": "^17.4.4",
+    "@commitlint/config-conventional": "^19.8.0",
     "@github/local-action": "^2.2.1",
     "@semantic-release/changelog": "^6.0.3",
     "@semantic-release/git": "^10.0.1",
