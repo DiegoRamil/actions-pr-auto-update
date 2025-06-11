@@ -34,7 +34,7 @@ jobs:
 
       - name: Install Dependencies
         id: install
-        run: npm ci --no-audit --no-fund
+        run: npm ci --no-audit --no-fund --no-progress
 
       - name: Lint Codebase
         id: super-linter
