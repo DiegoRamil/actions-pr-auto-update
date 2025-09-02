@@ -60,7 +60,7 @@
     "eslint-plugin-import": "^2.32.0",
     "eslint-plugin-jest": "^28.13.3",
     "eslint-plugin-prettier": "^5.5.4",
-    "rollup": "^4.48.1",
+    "rollup": "^4.50.0",
     "ts-jest-resolver": "^2.0.1",
     "ts-node": "^10.9.2",
     "globals": "^16.3.0",
